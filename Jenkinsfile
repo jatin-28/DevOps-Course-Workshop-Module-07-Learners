@@ -3,7 +3,9 @@ pipeline {
 
     stages {
 
-     parallel ( [
+     stage('Run Tests') {
+
+     parallel {
         stage('Back-end') {
 	
 	environment {
@@ -20,7 +22,7 @@ pipeline {
                 sh 'dotnet test'
             }
         }
-	,
+	
 
         stage('Front-end') {
             agent {
@@ -36,7 +38,8 @@ pipeline {
 		}
             }
         }
-       ]
+       
      }
+      }
     }
 }

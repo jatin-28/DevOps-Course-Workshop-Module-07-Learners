@@ -6,18 +6,19 @@ jobs:
     name: Build and test
     runs-on: ubuntu-latest      # Sets the build environment a machine with the latest Ubuntu installed
     steps:
-    - uses: actions/checkout@v2 # Adds a step to checkout the repository code
-    - uses: actions/setup-dotnet@v1
+    - name: Dotnet build
+      uses: actions/checkout@v2 # Adds a step to checkout the repository code
+      uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '3.1.x' # SDK Version to use; x will use the latest version of the 3.1 channel
-    - run: dotnet build
-    - run: dotnet test
+      run: dotnet build
+      run: dotnet test
     
-    name: Build and test Node
-    - uses: actions/setup-node@v2
+    - name: Build and test Node
+      uses: actions/setup-node@v2
       with:
         node-version: '12'
-      working-directory: ./DotnetTemplate.Web
+      working-directory: DotnetTemplate.Web
       run: npm install
       run: npm run build  
       run: npm t 

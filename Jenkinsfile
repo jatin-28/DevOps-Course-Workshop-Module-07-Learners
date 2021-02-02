@@ -43,6 +43,7 @@ pipeline {
 step_3: {
                  sh 'echo Hello front end'
                 }
+)
 }
             }
         }

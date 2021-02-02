@@ -1,8 +1,9 @@
 pipeline {
     agent none
+
     stages {
 
-
+     parallel {
         stage('Back-end') {
 	
 	environment {
@@ -34,5 +35,6 @@ pipeline {
 		}
             }
         }
+     }
     }
 }

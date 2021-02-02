@@ -29,13 +29,16 @@ pipeline {
                 docker { image 'node:14-alpine' }
             }
             steps {
-                sh 'node --version'
-		dir('DotnetTemplate.Web') {
- 		sh 'npm install'
-		sh 'npm run build'
-		sh 'npm t'
-		sh 'npm run lint'
-		}
+                parallel {
+                 sh 'node --version'
+		 dir('DotnetTemplate.Web') {
+ 		   sh 'npm install'
+		   sh 'npm run build'
+		   sh 'npm t'
+		   sh 'npm run lint'
+		 }
+                 sh 'echo Hello front end'
+                }
             }
         }
        

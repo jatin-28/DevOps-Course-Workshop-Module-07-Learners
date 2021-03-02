@@ -49,5 +49,5 @@ jobs:
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "corndel_dotnetimage" #Must be unique in Heroku
+          heroku_app_name: "corndel-dotnetimage" #Must be unique in Heroku
           heroku_email: "jatin_28@yahoo.co.uk"

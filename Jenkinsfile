@@ -31,7 +31,6 @@ pipeline {
                             sh 'npm t'
                             sh 'npm run lint'
                         }
-
                     }
                 }
             }

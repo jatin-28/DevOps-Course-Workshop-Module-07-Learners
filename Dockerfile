@@ -9,7 +9,7 @@ COPY . /app/
 
 RUN dotnet build
 
-WORKDIR /DotnetTemplate.Web/app
+WORKDIR /app/DotnetTemplate.Web
 
 RUN npm install
 RUN npm run build

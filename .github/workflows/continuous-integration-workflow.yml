@@ -51,3 +51,4 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "corndel-dotnetimage" #Must be unique in Heroku
           heroku_email: "jatin_28@yahoo.co.uk"
+          branch: "actions_integration"

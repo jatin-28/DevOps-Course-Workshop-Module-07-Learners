@@ -1,0 +1,28 @@
+name: Continuous Integration
+on: [push]                      # Will make the workflow run every time you push to any branch
+
+jobs:
+  build:
+    name: Build and test
+    runs-on: ubuntu-latest      # Sets the build environment a machine with the latest Ubuntu installed
+    steps:
+    - name: Dotnet build
+      uses: actions/checkout@v2 # Adds a step to checkout the repository code
+    - uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '3.1.x' # SDK Version to use; x will use the latest version of the 3.1 channel
+    - run: dotnet build
+    - run: dotnet test
+    
+    - name: Build and test Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: '12'
+    - working-directory: DotnetTemplate.Web
+      run: npm install
+    - working-directory: DotnetTemplate.Web
+      run: npm run build  
+    - working-directory: DotnetTemplate.Web
+      run: npm t 
+    - working-directory: DotnetTemplate.Web
+      run: npm run lint

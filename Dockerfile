@@ -14,7 +14,7 @@ WORKDIR /app/DotnetTemplate.Web
 RUN npm install
 RUN npm run build
 
-FROM dotnetimage-runner
+FROM build-stage
 
 COPY --from=build-stage ./DotnetTemplate.Web ./
 

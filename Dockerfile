@@ -16,7 +16,7 @@ RUN npm run build
 
 FROM build-stage
 
-COPY --from=build-stage DotnetTemplate.Web /
+COPY --from=build-stage /app/DotnetTemplate.Web /
 
 ENTRYPOINT ['dotnet', 'run']
 

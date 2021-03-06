@@ -13,10 +13,10 @@ WORKDIR /app/DotnetTemplate.Web
 RUN npm install
 RUN npm run build
 
-FROM build-stage as production 
+# FROM build-stage as production 
+# COPY --from=build-stage /app/DotnetTemplate.Web .
+# WORKDIR /DotnetTemplate.Web
 
-COPY --from=build-stage /app/DotnetTemplate.Web .
-WORKDIR /DotnetTemplate.Web
 ENTRYPOINT ['dotnet', 'run']
 
 

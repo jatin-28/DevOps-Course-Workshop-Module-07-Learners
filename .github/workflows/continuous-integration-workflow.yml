@@ -27,7 +27,7 @@ jobs:
     - working-directory: DotnetTemplate.Web
       run: npm run lint
 
-  push_to_registry:
+  push_to_registry_and_heroku:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     steps:
@@ -40,13 +40,8 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: jat7805/dotnettemplate
           tag_with_ref: true
-
-  heroku_deploy:
-    name: Deploy to heroku
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+      - name: Deploy to heroku
+        uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "corndel-dotnetimage" #Must be unique in Heroku

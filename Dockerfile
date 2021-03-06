@@ -19,4 +19,3 @@ RUN npm run build
 
 ENTRYPOINT ['dotnet', 'run']
 
-

@@ -40,10 +40,23 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: jat7805/dotnettemplate
           tag_with_ref: true
-      - name: Deploy to heroku
-        uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "corndel-dotnetimage" #Must be unique in Heroku
-          heroku_email: "jatin_28@yahoo.co.uk"
-          branch: "actions_integration"
+      - name: Login to Heroku Container registry
+        env: 
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku container:login 
+      - name: Build and push
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku container:push -a corndel-dotnetimage web 
+      - name: Release
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku container:release -a corndel-dotnetimage web 
+    
+#       - name: Deploy to heroku
+#         uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+#         with:
+#           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+#           heroku_app_name: "corndel-dotnetimage" #Must be unique in Heroku
+#           heroku_email: "jatin_28@yahoo.co.uk"
+#           branch: "actions_integration"
